@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
-const Folder = ({ explorer }) => {
-  console.log(explorer);
+function Folder({ handleInsertNode = () => {}, explorer }) {
+  // console.log(explorer);
   const [expand, setExpand] = useState(false);
   const [showInput, setShowInput] = useState({
     visible: false,
-    isFolder: null,
+    isFolder: false,
   });
 
   const handleNewFolder = (e, isFolder) => {
@@ -19,6 +19,7 @@ const Folder = ({ explorer }) => {
 
   const onAddFolder = (e) => {
     if (e.keyCode === 13 && e.target.value) {
+      handleInsertNode(explorer.id, e.target.value, showInput.isFolder);
       setShowInput({ ...showInput, visible: false });
     }
   };
@@ -39,16 +40,21 @@ const Folder = ({ explorer }) => {
               <span>{showInput.isFolder ? "📒" : "📄"}</span>
               <input
                 type="text"
-                onBlur={() => setShowInput({ ...showInput, visible: false })}
                 className="inputContainer__input"
                 autoFocus
-                style={{ backgroundColor: "white" }}
                 onKeyDown={onAddFolder}
+                onBlur={() => setShowInput({ ...showInput, visible: false })}
               />
             </div>
           )}
           {explorer.items.map((exp, key) => {
-            return <Folder explorer={exp} key={exp.id} />;
+            return (
+              <Folder
+                handleInsertNode={handleInsertNode}
+                key={exp.id}
+                explorer={exp}
+              />
+            );
           })}
         </div>
       </div>
@@ -56,6 +62,6 @@ const Folder = ({ explorer }) => {
   } else {
     return <span className="file">📄 {explorer.name}</span>;
   }
-};
+}
 
 export default Folder;
