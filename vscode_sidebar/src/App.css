@@ -1,0 +1,43 @@
+#root {
+  max-width: 1280px;
+  padding-left: 2rem;
+}
+.wrapper {
+  max-width: 500px;
+  border: 3px solid #f6f1f1;
+  padding: 1rem;
+}
+.folder {
+  margin-top: 6px;
+  display: flex;
+  justify-content: space-between;
+  padding: 3px;
+  width: 300px;
+  cursor: pointer;
+}
+.folder > span {
+  margin: 0 5px 2px 0;
+}
+.file {
+  margin-top: 5px;
+  padding-left: 5px;
+  display: flex;
+  flex-direction: column;
+}
+.inputContainer {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.inputContainer > span {
+  margin-top: 5px;
+}
+.inputContainer__input {
+  margin: 6px 0 0 0;
+  padding: 5px;
+  display: flex;
+  border: 1px solid lightgray;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
